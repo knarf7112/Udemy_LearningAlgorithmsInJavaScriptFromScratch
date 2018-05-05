@@ -111,7 +111,34 @@ function mergeSort (arr) {
     return mergedArr;
 }
 
-console.log(mergeSort([10, 9, 7, 3, 5, 8, 20]));
+function mergeSort_forloop(arr){
+
+    let seperateArr = arr.map( num => [num] );
+    console.log(seperateArr); // [ [ 10 ], [ 9 ], [ 7 ], [ 3 ], [ 5 ], [ 8 ], [ 20 ] ]​​​​​
+    let count = 0;
+    do{
+        count++;
+        console.log(seperateArr.length);// 7->6->5->4->3->2->1 
+        if(seperateArr.length === 1) return seperateArr[0];
+        let arr1 = seperateArr.shift();
+        let arr2 = seperateArr.shift();
+        console.log(count, arr1,arr2);
+        /*
+        1 : [ 10 ] [ 9 ] 
+        2 : [ 7 ] [ 3 ] 
+        3 : [ 5 ] [ 8 ] 
+        4 : [ 20 ] [ 9, 10 ] 
+        5 : [ 3, 7 ] [ 5, 8 ] 
+        6 : [ 9, 10, 20 ] [ 3, 5, 7, 8 ]
+        */
+        seperateArr.push(merge(arr1, arr2));
+
+    }
+    while(true);
+}
+
+console.log(mergeSort_forloop([10, 9, 7, 3, 5, 8, 20])); // [3, 5, 7, 8, 9, 10, 20]
+console.log(mergeSort([10, 9, 7, 3, 5, 8, 20])); // [3, 5, 7, 8, 9, 10, 20]
 console.log(mergeSort2([6000, 34, 203, 3, 746, 200, 984, 198, 764, 1, 9, 1])); // [1, 1, 3, 9, 34, 198, 200, 203, 746, 764, 984, 6000]
 
 /**
